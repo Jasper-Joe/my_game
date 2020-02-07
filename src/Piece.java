@@ -1,6 +1,7 @@
 import java.util.*;
 
 abstract public class Piece {
+    boolean hasMoved=false;
     Color cl;
     public Piece(Color x){
         cl=x;
@@ -26,7 +27,7 @@ abstract public class Piece {
         //throw new UnsupportedOperationException();
     }
 
-   // abstract public String toString();
+     abstract public String toString();
 
-    //abstract public List<String> moves(Board b, String loc);
+    abstract public List<String> moves(Board b, String loc);
 }
