@@ -6,15 +6,52 @@ abstract public class Piece {
     public Piece(Color x){
         cl=x;
     }
-//    public static void registerPiece(PieceFactory pf) {
-//        throw new UnsupportedOperationException();
-//    }
+    public static void registerPiece(PieceFactory pf) {
+        //throw new UnsupportedOperationException();
+
+    }
 
     public static Piece createPiece(String name) {
+        //System.out.println(name);
         Piece res;
-        //if(name=="br"){
+        if(name.equals("br")){
             res=new Rook(Color.BLACK);
-        //}
+        }
+        if(name.equals("bn")){
+            res=new Knight(Color.BLACK);
+        }
+        if(name.equals("bb")){
+            res=new Bishop(Color.BLACK);
+        }
+        if(name.equals("bp")){
+            res=new Pawn(Color.BLACK);
+        }
+        if(name.equals("bk")){
+            res=new King(Color.BLACK);
+        }
+        if(name.equals("bq")){
+            res=new Queen(Color.BLACK);
+        }
+        if(name.equals("wp")){
+            res=new Pawn(Color.WHITE);
+        }
+        if(name.equals("wq")){
+            res=new Queen(Color.WHITE);
+        }
+        if(name.equals("wb")){
+            res=new Bishop(Color.WHITE);
+        }
+        if(name.equals("wk")){
+            res=new King(Color.WHITE);
+        }
+        if(name.equals("wr")){
+            res=new Rook(Color.WHITE);
+        }
+        else{
+            res=new Knight(Color.WHITE);
+        }
+
+
         return res;
         //throw new UnsupportedOperationException();
     }
