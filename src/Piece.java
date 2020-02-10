@@ -13,7 +13,7 @@ abstract public class Piece {
 
     public static Piece createPiece(String name) {
         //System.out.println(name);
-        Piece res;
+        Piece res=null;
         if(name.equals("br")){
             res=new Rook(Color.BLACK);
         }
@@ -47,9 +47,11 @@ abstract public class Piece {
         if(name.equals("wr")){
             res=new Rook(Color.WHITE);
         }
-        else{
+        if(name.equals("wn")){
             res=new Knight(Color.WHITE);
+
         }
+
 
 
         return res;

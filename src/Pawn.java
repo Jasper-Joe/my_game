@@ -11,10 +11,10 @@ public class Pawn extends Piece {
     public String toString() {
         //throw new UnsupportedOperationException();
         String ans="";
-        if(this.color()==Color.BLACK){
+        if(this.color().equals(Color.BLACK)){
             ans="bp";
         }
-        else if(this.color()==Color.WHITE){
+        else if(this.color().equals(Color.WHITE)){
             ans="wp";
         }
 

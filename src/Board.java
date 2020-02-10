@@ -217,7 +217,7 @@ public class Board {
                 char first=intToAlpha.get(j+1);
                 int temp=8-i;
                 String cur=String.valueOf(first)+String.valueOf(temp);
-                System.out.println(cur);
+                //System.out.println(cur);
 
                 bi.visit(cur,getPiece(cur));
             }

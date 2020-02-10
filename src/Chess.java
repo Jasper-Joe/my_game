@@ -35,6 +35,7 @@ public class Chess {
             //System.out.println(first+second);
             map.put(first,second);
             Piece p=Piece.createPiece(second);
+            //System.out.println(p.toString());
             Board.theBoard().addPiece(p,first);
         }
 
