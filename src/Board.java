@@ -1,9 +1,13 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.lang.*;
 
 public class Board {
     HashMap<Character, Integer> alphaToInt=new HashMap<>();
     HashMap<Integer, Character> intToAlpha=new HashMap<>();
+    Logger lg=new Logger();
+    BoardListener cnt[]=new BoardListener[100];
+    static int count=0;
     private static Board myBoard=null;
 
 
@@ -57,8 +61,6 @@ public class Board {
         char right=loc.charAt(1);
         int x=alphaToInt.get(left);
         int y=Integer.parseInt(String.valueOf(right));
-//        System.out.println(x);
-//        System.out.println(y);
         return pieces[8-y][x-1];
 
 
@@ -92,16 +94,17 @@ public class Board {
         }
 
 
-        char left2=from.charAt(0);
-        char right2=from.charAt(1);
-        int x2=alphaToInt.get(left);
-        int y2=Integer.parseInt(String.valueOf(right));
+        char left2=to.charAt(0);
+        char right2=to.charAt(1);
+        int x2=alphaToInt.get(left2);
+        int y2=Integer.parseInt(String.valueOf(right2));
 
         if(8-y2<0 || 8-y2>7 || x2-1<0 || x2-1>7){
             throw new UnsupportedOperationException();
         }
         int p1x=8-y;
         int p1y=x-1;
+        //System.out.println(y2);
         int p2x=8-y2;
         int p2y=x2-1;
 
@@ -137,6 +140,7 @@ public class Board {
                 throw new UnsupportedOperationException();
             }
             if(p1y!=p2y){
+                //System.out.println("?");
                 throw new UnsupportedOperationException();
             }
 
@@ -158,19 +162,25 @@ public class Board {
             }
         }
         if(temp.toString()=="wp"){
-            if(pieces[p2x][p2y]!=null){
-                throw new UnsupportedOperationException();
-            }
+//            if(pieces[p2x][p2y]!=null){
+//                System.out.println(p2x);
+//                System.out.println(p2y);
+//
+//                throw new UnsupportedOperationException();
+//            }
             if(p1y!=p2y){
                 throw new UnsupportedOperationException();
             }
             if(temp.hasMoved==true){
                 if(p2x-p1x!=-1){
+                    //System.out.println("??");
                     throw new UnsupportedOperationException();
                 }
             }
             if(temp.hasMoved==false){
                 if(!(p2x-p1x==-1 || p2x-p1x==-2)){
+//                    System.out.println(p2x);
+//                    System.out.println(p1x);
                     throw new UnsupportedOperationException();
                 }
                 if(p2x-p1x==-2){
@@ -180,16 +190,13 @@ public class Board {
                 }
             }
         }
+        this.lg.onMove(from,to,this.getPiece(from));
+        if(this.getPiece(from)!=null && this.getPiece(to)!=null){
+            this.lg.onCapture(this.getPiece(from),this.getPiece(to));
+        }
+
         pieces[8-y][x-1]=null;
         pieces[8-y2][x2-1]=temp;
-
-
-
-
-
-
-
-
 
     }
 
@@ -198,18 +205,25 @@ public class Board {
         pieces=null;
     }
 
-//    public void registerListener(BoardListener bl) {
-//        throw new UnsupportedOperationException();
-//    }
+    public void registerListener(BoardListener bl) {
+//        cnt[count]=bl;
+//        count++;
+        //throw new UnsupportedOperationException();
+    }
 //
-//    public void removeListener(BoardListener bl) {
-//        throw new UnsupportedOperationException();
-//    }
-//
-//    public void removeAllListeners() {
-//        throw new UnsupportedOperationException();
-//    }
-//
+    public void removeListener(BoardListener bl) {
+        //throw new UnsupportedOperationException();
+        for(int i=0;i<cnt.length;i++){
+            if(bl==cnt[i]){
+                cnt[i]=null;
+            }
+        }
+    }
+
+    public void removeAllListeners() {
+        Arrays.fill(cnt,null);
+    }
+
     public void iterate(BoardExternalIterator bi) {
 
         for(int i=0;i<8;i++){
@@ -217,7 +231,7 @@ public class Board {
                 char first=intToAlpha.get(j+1);
                 int temp=8-i;
                 String cur=String.valueOf(first)+String.valueOf(temp);
-                //System.out.println(cur);
+
 
                 bi.visit(cur,getPiece(cur));
             }

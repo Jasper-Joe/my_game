@@ -22,7 +22,7 @@ public class Pawn extends Piece {
     }
 
     public List<String> moves(Board b, String loc) {
-        //throw new UnsupportedOperationException();
+
 
         HashMap<Character, Integer> alphaToInt=new HashMap<>();
         HashMap<Integer, Character> intToAlpha=new HashMap<>();
@@ -108,6 +108,16 @@ public class Pawn extends Piece {
             }
 
         }
+        if(this.color()==Color.BLACK){
+            String tem=String.valueOf(px+1)+String.valueOf(py-1);
+            String tem2=String.valueOf(px+1)+String.valueOf(py+1);
+            if(px!=7 && py-1>=0 && b.getPiece(tem)!=null && b.getPiece(tem).color()==Color.WHITE){
+                ans.add(tem);
+            }
+            if(px!=7 && py+1<8 && b.getPiece(tem2)!=null && b.getPiece(tem2).color()==Color.WHITE){
+                ans.add(tem2);
+            }
+        }
 
 
         if(this.color()==Color.WHITE && px==6){
@@ -168,6 +178,20 @@ public class Pawn extends Piece {
 
             }
 
+        }
+
+
+
+
+        if(this.color()==Color.WHITE){
+            String tem=String.valueOf(px-1)+String.valueOf(py-1);
+            String tem2=String.valueOf(px-1)+String.valueOf(py+1);
+            if(px!=0 && py-1>=0 && b.getPiece(tem)!=null && b.getPiece(tem).color()==Color.BLACK){
+                ans.add(tem);
+            }
+            if(px!=0 && py+1<8 && b.getPiece(tem2)!=null && b.getPiece(tem2).color()==Color.BLACK){
+                ans.add(tem2);
+            }
         }
 
 

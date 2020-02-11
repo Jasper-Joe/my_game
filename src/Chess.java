@@ -19,13 +19,13 @@ public class Chess {
         Piece.registerPiece(new BishopFactory());
         Piece.registerPiece(new RookFactory());
         Piece.registerPiece(new PawnFactory());
-//        Board.theBoard().registerListener(new Logger());
+        Board.theBoard().registerListener(new Logger());
         // args[0] is the layout file name
         // args[1] is the moves file name
         // Put your code to read the layout file and moves files
         // here.
         String layout =args[0];
-        //String moves=args[1];
+        String moves=args[1];
         String line;
         BufferedReader in =new BufferedReader(new FileReader(layout));
         while((line=in.readLine())!=null){
@@ -35,9 +35,20 @@ public class Chess {
             //System.out.println(first+second);
             map.put(first,second);
             Piece p=Piece.createPiece(second);
-            //System.out.println(p.toString());
             Board.theBoard().addPiece(p,first);
         }
+
+        BufferedReader in2=new BufferedReader(new FileReader(moves));
+        String line2;
+        while((line2=in2.readLine())!=null){
+            if(line2.charAt(0)=='#') continue;
+            String first=line2.substring(0,2);
+            String second=line2.substring(3);
+            Board.theBoard().movePiece(first,second);
+
+
+        }
+
 
         // Leave the following code at the end of the simulation:
         System.out.println("Final board:");
