@@ -136,9 +136,9 @@ public class Board {
             }
         }
         if(temp.toString()=="bp"){
-            if(pieces[p2x][p2y]!=null){
-                throw new UnsupportedOperationException();
-            }
+//            if(pieces[p2x][p2y]!=null){
+//                throw new UnsupportedOperationException();
+//            }
             if(p1y!=p2y){
 
                     boolean flag=false;
