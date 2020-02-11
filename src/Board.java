@@ -140,8 +140,18 @@ public class Board {
                 throw new UnsupportedOperationException();
             }
             if(p1y!=p2y){
-                //System.out.println("?");
-                throw new UnsupportedOperationException();
+
+                    boolean flag=false;
+                    if((p2y-p1y==1 && p1x+1==p2x) || (p1y-p2y==1 && p1x+1==p2x)){
+                        if(pieces[p2x][p2y].color()==Color.WHITE){
+                            flag=true;
+                        }
+                    }
+                    if(!flag){
+                        throw new UnsupportedOperationException();
+                    }
+
+
             }
 
             if(temp.hasMoved==true){
@@ -168,8 +178,18 @@ public class Board {
 //
 //                throw new UnsupportedOperationException();
 //            }
+
             if(p1y!=p2y){
-                throw new UnsupportedOperationException();
+                boolean flag=false;
+                if((p2y-p1y==1 && p1x-1==p2x) || (p1y-p2y==1 && p1x-1==p2x)){
+                    if(pieces[p2x][p2y].color()==Color.BLACK){
+                        flag=true;
+                    }
+                }
+                if(!flag){
+                    throw new UnsupportedOperationException();
+                }
+
             }
             if(temp.hasMoved==true){
                 if(p2x-p1x!=-1){
