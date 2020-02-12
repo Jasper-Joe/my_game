@@ -114,6 +114,12 @@ public class King extends Piece {
         }
 
 
+        Set<String> set=new LinkedHashSet<>();
+        set.addAll(ans);
+        ans.clear();
+        ans.addAll(set);
+
+
 
 
         return ans;

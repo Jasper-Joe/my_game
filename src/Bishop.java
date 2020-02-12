@@ -108,6 +108,12 @@ public class Bishop extends Piece {
             ans.add(temp);
         }
 
+
+        Set<String> set=new LinkedHashSet<>();
+        set.addAll(ans);
+        ans.clear();
+        ans.addAll(set);
+
         return ans;
     }
 

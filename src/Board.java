@@ -50,6 +50,7 @@ public class Board {
     // exists
     public Piece getPiece(String loc) {
         if(loc.charAt(0)!='a' && loc.charAt(0)!='b' && loc.charAt(0)!='c' && loc.charAt(0)!='d' && loc.charAt(0)!='e' && loc.charAt(0)!='f' && loc.charAt(0)!='g' && loc.charAt(0)!='h'){
+            System.out.println(loc);
             throw new UnsupportedOperationException();
         }
         int temp2=Integer.parseInt(loc.substring(1));
@@ -82,6 +83,7 @@ public class Board {
     }
 
     public void movePiece(String from, String to) {
+        //System.out.println(from);
         char left=from.charAt(0);
         char right=from.charAt(1);
         int x=alphaToInt.get(left);

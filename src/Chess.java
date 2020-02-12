@@ -35,7 +35,7 @@ public class Chess {
             //System.out.println(first+second);
             map.put(first,second);
             Piece p=Piece.createPiece(second);
-            Board.theBoard().addPiece(p,first);
+            //Board.theBoard().addPiece(p,first);
         }
 
         BufferedReader in2=new BufferedReader(new FileReader(moves));
@@ -44,14 +44,16 @@ public class Chess {
             if(line2.charAt(0)=='#') continue;
             String first=line2.substring(0,2);
             String second=line2.substring(3);
-            Board.theBoard().movePiece(first,second);
+            //Board.theBoard().movePiece(first,second);
 
 
         }
+        Test t=new Test();
+        t.test1();
 
 
         // Leave the following code at the end of the simulation:
-        System.out.println("Final board:");
-        Board.theBoard().iterate(new BoardPrinter());
+        //System.out.println("Final board:");
+        //Board.theBoard().iterate(new BoardPrinter());
     }
 }

@@ -57,7 +57,7 @@ public class Pawn extends Piece {
                 ans.add(temp);
             }
             String temp2=String.valueOf(left)+"5";
-            if(b.getPiece(temp2)==null){
+            if(b.getPiece(temp2)==null && b.getPiece(temp)==null){
                 ans.add(temp2);
             }
 
@@ -109,8 +109,8 @@ public class Pawn extends Piece {
 
         }
         if(this.color()==Color.BLACK){
-            String tem=String.valueOf(px+1)+String.valueOf(py-1);
-            String tem2=String.valueOf(px+1)+String.valueOf(py+1);
+            String tem=String.valueOf(intToAlpha.get(py))+String.valueOf(8-px-1);
+            String tem2=String.valueOf(intToAlpha.get(py+2))+String.valueOf(8-px-1);
             if(px!=7 && py-1>=0 && b.getPiece(tem)!=null && b.getPiece(tem).color()==Color.WHITE){
                 ans.add(tem);
             }
@@ -126,7 +126,7 @@ public class Pawn extends Piece {
                 ans.add(temp);
             }
             String temp2=String.valueOf(left)+"4";
-            if(b.getPiece(temp2)==null){
+            if(b.getPiece(temp2)==null && b.getPiece(temp)==null){
                 ans.add(temp2);
             }
 
@@ -184,8 +184,8 @@ public class Pawn extends Piece {
 
 
         if(this.color()==Color.WHITE){
-            String tem=String.valueOf(px-1)+String.valueOf(py-1);
-            String tem2=String.valueOf(px-1)+String.valueOf(py+1);
+            String tem=String.valueOf(intToAlpha.get(py))+String.valueOf(8-px+1);
+            String tem2=String.valueOf(intToAlpha.get(py+2))+String.valueOf(8-px+1);
             if(px!=0 && py-1>=0 && b.getPiece(tem)!=null && b.getPiece(tem).color()==Color.BLACK){
                 ans.add(tem);
             }
@@ -193,6 +193,13 @@ public class Pawn extends Piece {
                 ans.add(tem2);
             }
         }
+
+        Set<String> set=new LinkedHashSet<>();
+        set.addAll(ans);
+        ans.clear();
+        ans.addAll(set);
+
+
 
 
         return ans;

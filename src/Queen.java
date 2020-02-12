@@ -53,8 +53,8 @@ public class Queen extends Piece {
         int py=x-1;
 
         for(int i=px+1;i<8;i++){
-            char first=intToAlpha.get(i+1);
-            String temp=String.valueOf(first)+String.valueOf(right);
+            int num=8-i;
+            String temp=String.valueOf(left)+String.valueOf(num);
             if(b.getPiece(temp)!=null && b.getPiece(temp).color()==this.color()){
                 break;
             }
@@ -66,8 +66,8 @@ public class Queen extends Piece {
         }
 
         for(int i=px-1;i>=0;i--){
-            char first=intToAlpha.get(i+1);
-            String temp=String.valueOf(first)+String.valueOf(right);
+            int num=8-i;
+            String temp=String.valueOf(left)+String.valueOf(num);
             if(b.getPiece(temp)!=null && b.getPiece(temp).color()==this.color()){
                 break;
             }
@@ -79,8 +79,8 @@ public class Queen extends Piece {
         }
 
         for(int i=py-1;i>=0;i--){
-            String second=String.valueOf(8-i);
-            String temp=String.valueOf(left)+second;
+            String second=String.valueOf(intToAlpha.get(i+1));
+            String temp=second+String.valueOf(right);
             if(b.getPiece(temp)!=null && b.getPiece(temp).color()==this.color()){
                 break;
             }
@@ -93,8 +93,8 @@ public class Queen extends Piece {
 
 
         for(int i=py+1;i<8;i++){
-            String second=String.valueOf(8-i);
-            String temp=String.valueOf(left)+second;
+            String second=String.valueOf(intToAlpha.get(i+1));
+            String temp=second+String.valueOf(right);
             if(b.getPiece(temp)!=null && b.getPiece(temp).color()==this.color()){
                 break;
             }
@@ -164,6 +164,13 @@ public class Queen extends Piece {
             }
             ans.add(temp);
         }
+
+
+
+        Set<String> set=new LinkedHashSet<>();
+        set.addAll(ans);
+        ans.clear();
+        ans.addAll(set);
 
         return ans;
     }
